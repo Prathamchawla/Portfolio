@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Data Analysis</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        section {
+            padding: 50px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .graph-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .graph-container iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+
+        .graph-container:nth-child(even) {
+            background-color: #2c2c2c;
+        }
+
+        .word-cloud-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fadeIn {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .fadeRight {
+            animation: fadeIn 1.5s ease-in-out;
+            animation-delay: 0.5s;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>LinkedIn Data Analysis</h1>
+    </header>
+
+    <section>
+        <h2>Data Overview</h2>
+        <div class="graph-container fadeIn">
+            <img src="{{ url_for('static', filename='LinkedIndata.png') }}" alt="Data Overview">
+        </div>
+    </section>
+
+    <section>
+        <h2>Insights</h2>
+        <p> You can move the cursor on the graph to see the values</p>
+        <div class="graph-container fadeRight">
+            <iframe src="static/Insights.html" frameborder="0"></iframe>
+        </div>
+    </section>
+
+    <section>
+        <h2>Where do my connections work</h2>
+        <div class="graph-container fadeIn">
+            <iframe src="static/BarChart.html" frameborder="0"></iframe>
+        </div>
+        <div class="graph-container fadeRight">
+            <iframe src="static/HeatMap.html" frameborder="0"></iframe>
+        </div>
+    </section>
+
+    <section>
+        <h2>Position of my connections</h2>
+        <div class="graph-container fadeIn">
+            <iframe src="static/BarChart(Positions).html" frameborder="0"></iframe>
+        </div>
+    </section>
+
+    <section>
+        <h2>Word Cloud Visualization</h2>
+        <img class="word-cloud-img fadeIn" src="{{ url_for('static', filename='LinkedInwordVisualization.png') }}" alt="Word Cloud Visualization">
+    </section>
+
+</body>
+</html>

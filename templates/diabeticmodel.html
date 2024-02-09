@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetic Prediction</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #2c3e50, #3498db); /* Dark gradient background */
+            color: #ecf0f1; /* Light text color */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            perspective: 800px; /* Perspective for 3D effect */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            color: #f39c12; /* Orange color */
+            margin-top: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        form {
+            background-color: #2c3e50; /* Dark background for the form */
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            width: 45%;
+            transform: rotateX(30deg) rotateZ(10deg); /* 3D rotation effect */
+            transition: transform 0.5s ease-in-out;
+            position: relative;
+        }
+
+        form:hover {
+            transform: rotateX(0deg) rotateZ(0deg);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ecf0f1;
+        }
+
+        input {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #3498db;
+            border-radius: 5px;
+            background-color: #2c3e50;
+            color: #ecf0f1;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #ecf0f1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .prediction {
+            background-color: #2c3e50; /* Dark background for the prediction */
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            width: 45%;
+        }
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+            color: #ecf0f1;
+        }
+
+        /* 3D shapes simulation */
+        body:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(45deg, #34495e, #34495e 10px, #2c3e50 10px, #2c3e50 20px);
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        body:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #34495e, #34495e 10px, #2c3e50 10px, #2c3e50 20px);
+            transform: rotate(-45deg);
+            z-index: -1;
+        }
+
+        /* Cube */
+        .cube {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translate(-50%, -50%) rotateX(-45deg) rotateY(45deg);
+            animation: rotateCube 10s infinite linear;
+        }
+
+        @keyframes rotateCube {
+            from {
+                transform: translate(-50%, -50%) rotateX(-45deg) rotateY(45deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotateX(-45deg) rotateY(405deg);
+            }
+        }
+
+        /* Triangle */
+        .triangle {
+            position: absolute;
+            top: 20%;
+            left: 70%;
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 87px solid rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+            animation: rotateTriangle 8s infinite linear;
+        }
+
+        @keyframes rotateTriangle {
+            from {
+                transform: rotate(90deg);
+            }
+            to {
+                transform: rotate(450deg);
+            }
+        }
+
+        /* Additional Styles for Images */
+        .prediction img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px; /* Adjust the margin as needed */
+        }
+    </style>
+</head>
+<body>
+    <h1>Diabetic Prediction</h1>
+    <div class="container">
+        <form action="/diabiticmodelpredict" method="post">
+            <label for="Pregnancies">Pregnancies:</label>
+            <input type="text" name="Pregnancies" required>
+
+            <label for="Glucose">Glucose:</label>
+            <input type="text" name="Glucose" required>
+
+            <label for="BloodPressure">BloodPressure:</label>
+            <input type="text" name="BloodPressure" required>
+
+            <label for="SkinThickness">SkinThickness:</label>
+            <input type="text" name="SkinThickness" required>
+
+            <label for="Insulin">Insulin:</label>
+            <input type="text" name="Insulin" required>
+
+            <label for="BMI">BMI:</label>
+            <input type="text" name="BMI" required>
+
+            <label for="DiabetesPedigreeFunction">DiabetesPedigreeFunction:</label>
+            <input type="text" name="DiabetesPedigreeFunction" required>
+
+            <label for="Age">Age:</label>
+            <input type="text" name="Age" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <div class="prediction">
+            {% if prediction %}
+                <p>Prediction Value: {{ prediction }}</p>
+                {% if prediction == '1' %}
+                    <img src="https://images.hindustantimes.com/img/2021/11/29/550x309/diabetes_thumb_1636714977489_1638192579104.jpg" alt="Diabetic Image">
+                {% else %}
+                    <img src="https://media.makeameme.org/created/dont-worry-be-59caf7.jpg" alt="Non-Diabetic Image">
+                {% endif %}
+            {% endif %}
+        </div>
+
+    <!-- Cube -->
+    <div class="cube"></div>
+
+    <!-- Triangle -->
+    <div class="triangle"></div>
+</body>
+</html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pratham Chawla - Portfolio</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px;
+            background-color: #333;
+            border-bottom: 1px solid #555;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1, h2, h3 {
+            color: #ff9900;
+        }
+
+        section {
+            padding: 30px;
+            margin-bottom: 30px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .fadeIn {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .project-column {
+            flex: 1;
+            margin-right: 20px;
+            background-color: #444;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .project {
+            background-color: #555;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .project-column {
+                margin-right: 0;
+            }
+        }
+
+        .animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slideInLeft {
+            animation-name: slideInLeft;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slideInRight {
+            animation-name: slideInRight;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fadeInUp {
+            animation-name: fadeInUp;
+        }
+
+        @keyframes bulletPoints {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .bulletPoints {
+            animation-name: bulletPoints;
+            animation-duration: 0.5s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes popUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .popUp {
+            animation-name: popUp;
+            animation-duration: 0.5s;
+            animation-fill-mode: both;
+        }
+
+        /* 3D Animations and Shapes */
+        .cube, .sphere, .pyramid, .torus, .cylinder {
+            position: absolute;
+            animation-duration: 5s;
+            animation-iteration-count: infinite;
+            transform-style: preserve-3d;
+            z-index: 0; /* Ensure shapes are behind the content */
+        }
+
+        .cube {
+            width: 50px;
+            height: 50px;
+            background-color: #ff9900;
+            animation: rotateCube 5s infinite linear;
+            top: 20%;
+            left: 10%;
+        }
+
+        .sphere {
+            width: 50px;
+            height: 50px;
+            background-color: #ff9900;
+            border-radius: 50%;
+            animation: rotateSphere 5s infinite linear;
+            top: 30%;
+            left: 80%;
+        }
+
+        .pyramid {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 50px solid #ff9900;
+            animation: rotatePyramid 5s infinite linear;
+            top: 80%;
+            left: 20%;
+        }
+
+        .torus {
+            width: 70px;
+            height: 30px;
+            background-color: #ff9900;
+            border-radius: 50%;
+            animation: rotateTorus 5s infinite linear;
+            top: 70%;
+            left: 70%;
+        }
+
+        .cylinder {
+            width: 30px;
+            height: 70px;
+            background-color: #ff9900;
+            border-radius: 15px;
+            animation: rotateCylinder 5s infinite linear;
+            top: 50%;
+            left: 40%;
+        }
+
+        @keyframes rotateCube {
+            from { transform: rotateX(0) rotateY(0) rotateZ(0); }
+            to { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+        }
+
+        @keyframes rotateSphere {
+            from { transform: rotate(0); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotatePyramid {
+            from { transform: rotate(0); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotateTorus {
+            from { transform: rotate(0); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes rotateCylinder {
+            from { transform: rotate(0); }
+            to { transform: rotate(360deg); }
+        }
+
+        .animated-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff9900, #ff5e5e);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            z-index: -1;
+            animation: gradientBackground 5s infinite alternate-reverse ease-in-out;
+        }
+
+        @keyframes gradientBackground {
+            from { background-position: 0% 0%; }
+            to { background-position: 100% 100%; }
+        }
+
+        /* Bounce Effect for Skills Section */
+        #skills {
+            text-align: center;
+        }
+
+        .bulletPoints li {
+            display: inline-block;
+            margin: 10px;
+            transform-origin: center bottom;
+        }
+
+        .popUp {
+            animation-name: popUp;
+            animation-duration: 0.5s;
+            animation-fill-mode: both;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .bounce {
+            animation-name: bounce;
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 class="fadeIn">Pratham Chawla</h1>
+    </header>
+
+    <div class="cube"></div>
+    <div class="sphere"></div>
+    <div class="pyramid"></div>
+    <div class="torus"></div>
+    <div class="cylinder"></div>
+
+    <section id="introduction" class="fadeIn">
+        <h2>Hey there!</h2>
+        <p>
+            I'm a data science enthusiast, well-versed in machine learning, statistics, and NLP.
+            Proficient in Python and MySQL, I wrangle and analyze data to fuel smart decision-making.
+            Currently diving into Azure for bigger adventures. Let's tackle challenges and turn them into solutions! 💪🚀
+        </p>
+    </section>
+
+    <section id="skills" class="animated fadeInUp">
+        <h2>Skills</h2>
+        <ul class="bulletPoints">
+            <li class="popUp bounce">Deep Learning</li>
+            <li class="popUp bounce">Machine Learning</li>
+            <li class="popUp bounce">Python</li>
+            <li class="popUp bounce">SSIS (SQL Server Integration Services)</li>
+            <li class="popUp bounce">SSMS (SQL Server Management Studio)</li>
+            <li class="popUp bounce">Power BI</li>
+            <li class="popUp bounce">Microsoft Azure</li>
+            <li class="popUp bounce">Statistics</li>
+            <li class="popUp bounce">NLP (Natural Language Processing)</li>
+            <li class="popUp bounce">SQL</li>
+            <li class="popUp bounce">Microsoft Excel</li>
+        </ul>
+    </section>
+
+    <section id="projects" class="animated fadeInUp">
+        <h2>About My Projects</h2>
+        <p> You can see the working of the projects by clicking them</p>
+
+        <h3>Machine Learning</h3>
+        <div class="projects">
+            <div class="project-column">
+                <div class="project">
+                    <!-- Button for Statistical Anomaly Detection -->
+                    <button onclick="redirectToAnomalyDetection()">Statistical Anomaly Detection</button>
+                </div>
+                <div class="project">
+                    <button onclick="redirectToAlgerianForest()">Predicting Algerian Forest Fire</button>
+                </div>
+                <div class="project">
+                   <button onclick="redirectToDiabiticPrediction()">Diabetic Prediction</button>
+                </div>
+                
+            </div>
+            <div class="project-column">
+                
+                <div class="project">
+                    <button onclick="redirectToPM()">PM2.5 Air Pollutant Prediction</button>
+                </div>
+                <div class="project">
+                   <button onclick="redirectToTesla()">Tesla Stock Price Prediction Using ARIMA</button>
+                </div>
+                <div class="project">
+                    <button onclick="redirectToRedWine()">EDA of Red Wine Data</button>
+                </div>
+            </div>
+        </div>
+
+        <h3>Deep Learning</h3>
+        <div class="projects">
+            <div class="project-column">
+                <div class="project">
+                    <p>Image Classification of Numbers using Keras</p>
+                </div>
+            </div>
+            <div class="project-column">
+                <div class="project">
+                    <p>Predicting House Price using Artificial Neural Network (ANN)</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Power BI</h3>
+        <div class="projects">
+            <div class="project-column">
+                <div class="project">
+                    <button onclick="redirectToAdventureWorks()">AdventureWorks Dashboard</button>
+                </div>
+            </div>
+            <div class="project-column">
+                <div class="project">
+                    <button onclick="redirectToSpiceJet()">SpiceJet Report</button>
+                </div>
+            </div>
+            <div class="project-column">
+                <div class="project">
+                    <button onclick="redirectToFraudDataset()">Fraud Dataset Dashboard</button>
+                </div>
+            </div>
+        </div>
+
+        <h3>Excel</h3>
+        <div class="projects">
+            <div class="project-column">
+                <div class="project">
+                    <button onclick="redirectToRoadAccident()">Road Accident Dashboard</button>
+                </div>
+            </div>
+        </div>
+
+        <h3>NLP (Natural Language Processing)</h3>
+        <div class="projects">
+            <div class="project-column">
+                <div class="project">
+                    <button onclick="redirectToReccomendation()">Song Reccomendation System</button>
+                </div>
+            </div>
+            <div class="project-column">
+                <div class="project">
+                    <button onclick="redirectToChatGpt()">Chat GPT Sentiment Analysis</button>
+                </div>
+            </div>
+        </div>
+        
+        <h3>Data Analytics</h3>
+        <div class="projects">
+            <div class="project-column">
+                <div class="project">
+                    <button onclick="redirectToLinkedIn()">LinkedIn Data Analysis</button>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <script>
+        function redirectToAnomalyDetection() {
+            window.location.href = '/statisticalanomalydetection';
+        }
+        function redirectToDiabiticPrediction() {
+            window.location.href = '/diabiticmodel';
+        }
+        function redirectToAlgerianForest() {
+            window.location.href = '/Algerianpredictdata';
+        }
+        function redirectToRedWine() {
+            window.location.href = '/EDAredwine';
+        }
+        function redirectToTesla() {
+            window.location.href = '/TeslaStock';
+        }
+        function redirectToAdventureWorks() {
+            window.location.href = '/Adventure';
+        }
+         function redirectToSpiceJet() {
+            window.location.href = '/SpiceJet';
+        }
+        function redirectToFraudDataset() {
+            window.location.href = '/FraudDataset';
+        }
+        function redirectToRoadAccident() {
+            window.location.href = '/RoadAccident';
+        }
+        function redirectToReccomendation() {
+            window.location.href = '/ReccomendationSystem';
+        }
+        function redirectToLinkedIn() {
+            window.location.href = '/LinkedInDataAnalysis';
+        }
+        function redirectToChatGpt() {
+            window.location.href = '/SentimentAnalysis';
+        }
+        function redirectToPM() {
+            window.location.href = '/Pm25Prediction';
+        }
+    </script>
+
+</body>
+</html>

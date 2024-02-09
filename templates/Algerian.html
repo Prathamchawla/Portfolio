@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWI Prediction</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <style>
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .login {
+            background-color: #1e2328;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 50%;
+        }
+
+        .output {
+            width: 40%;
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #61dafb;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #61dafb;
+            border-radius: 5px;
+            background-color: #394049;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #61dafb;
+            color: #282c34;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45aaf2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login">
+            <h1>FWI Prediction</h1>
+            <form action="/Algerianpredictdata" method="post">
+                <input type="text" name="Temperature" placeholder="Temperature" required="required"/><br>
+                <input type="text" name="RH" placeholder="RH" required="required" /><br> 
+                <input type="text" name="Ws" placeholder="Ws" required="required" /><br> 
+                <input type="text" name="Rain" placeholder="Rain" required="required" /><br> 
+                <input type="text" name="FFMC" placeholder="FFMC" required="required" /><br> 
+                <input type="text" name="DMC" placeholder="DMC" required="required" /><br> 
+                <input type="text" name="ISI" placeholder="ISI" required="required" /><br>
+                <input type="text" name="Region" placeholder="Region" required="required" /><br>                              
+                <input type="text" name="Classes" placeholder="Classes" required="required" /><br>               
+                <button type="submit">Predict</button><br>
+            </form>
+        </div>
+        <div class="output">
+            <h2>The FWI prediction is {{result}}</h2>
+        </div>
+    </div>
+</body>
+</html>

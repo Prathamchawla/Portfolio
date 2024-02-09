@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla Stock Price Prediction</title>
+    <!-- AOS Library CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css">
+    <style>
+        body {
+            background-color: #0c0c0c;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: #61dafb;
+        }
+
+        section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.5); }
+            to { transform: scale(1); }
+        }
+
+        /* Parallax effect */
+        section[data-parallax="true"] {
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Tesla Stock Price Prediction</h1>
+    </header>
+
+    <section>
+        <h2>About the Data</h2>
+        <p data-aos="fade-up" data-aos-duration="1000">We are doing Univariate Analysis on the Close Prices of the Tesla Stock.</p>
+        <img data-aos="zoom-in" data-aos-duration="800" src="{{ url_for('static', filename='TeslaData.png') }}" alt="About the Data Image">
+    </section>
+
+    <section>
+        <h2>EDA of the Data</h2>
+        <p data-aos="fade-up" data-aos-duration="1000">Exploratory Data Analysis (EDA) is a crucial step in understanding the characteristics of a dataset. In the context of Tesla stock, conducting EDA can help identify trends, patterns, and outliers in the historical close prices.</p><br><br>
+        <p data-aos="fade-up" data-aos-duration="1000">1. Line Charts: 
+A line chart is a powerful tool for visualizing the trend in Tesla's closing stock prices over time.</p>
+        <img data-aos="zoom-in" data-aos-duration="800" src="{{ url_for('static', filename='TeslaLineChart1.png') }}" alt="EDA Image">
+        <img data-aos="zoom-in" data-aos-duration="800" src="{{ url_for('static', filename='TeslaLineChart2.png') }}" alt="EDA Image">
+        <br><br>
+        <p data-aos="fade-up" data-aos-duration="1000">2. Histogram:
+A histogram helps visualize the distribution of Tesla's closing prices, providing insights into the frequency of different price ranges.</p>
+        <img data-aos="zoom-in" data-aos-duration="800" src="{{ url_for('static', filename='TeslaHist1.png') }}" alt="EDA Image"><br><br>
+        <img data-aos="zoom-in" data-aos-duration="800" src="{{ url_for('static', filename='TeslaHist2.png') }}" alt="EDA Image">
+        <br><br>
+        <p data-aos="fade-up" data-aos-duration="1000">3. Box Plot:
+A box plot provides a summary of the central tendency, dispersion, and identification of outliers in the closing prices.</p>
+         <img data-aos="zoom-in" data-aos-duration="800" src="{{ url_for('static', filename='TeslaBoxplot.png') }}" alt="EDA Image">
+    </section>
+
+    <section data-parallax="true" style="background-image: url('background_image_1.jpg');">
+        <h2 data-aos="fade-up" data-aos-duration="1000">Smoothing of the Data</h2>
+        <p data-aos="fade-up" data-aos-duration="1000">Smoothing of data involves reducing noise or fluctuations in a dataset to reveal underlying patterns or trends more clearly. In the context of financial data, such as Tesla stock prices, smoothing techniques can help analysts identify the overall direction of the market, filter out short-term fluctuations, and make it easier to spot long-term trends. </p>
+        <img data-aos="zoom-in" data-aos-duration="800" src="{{ url_for('static', filename='TeslaSmoothing.png') }}" alt="EDA Image">
+    </section>
+
+    <section>
+        <h2>Seasonal Decompose</h2>
+        <p data-aos="fade-up" data-aos-duration="1000">Seasonal decomposition of time series (STL) is a technique that decomposes a time series into three main components: trend, seasonality, and remainder (residuals). This technique is useful for understanding the underlying patterns in the data and can be applied to financial time series, such as Tesla stock prices. </p>
+        <img data-aos="zoom-in" data-aos-duration="800" src="{{ url_for('static', filename='Tesladecomposing.png') }}" alt="EDA Image">
+    </section>
+
+    <section data-parallax="true" style="background-image: url('background_image_2.jpg');">
+        <h2 data-aos="fade-up" data-aos-duration="1000">Forecasting on the Test Data</h2>
+        <p data-aos="fade-up" data-aos-duration="1000">To forecast the test data and plot the results, you can use various time series forecasting methods. One common method is the AutoRegressive Integrated Moving Average (ARIMA) model.</p>
+        <img data-aos="zoom-in" data-aos-duration="800" src="{{ url_for('static', filename='TeslaForecasting1.png') }}" alt="Forecasting Image">
+         <img data-aos="zoom-in" data-aos-duration="800" src="{{ url_for('static', filename='TeslaForcasting2.png') }}" alt="Forecasting Image">
+    </section>
+
+    <!-- AOS Library JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS Library
+        AOS.init();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Visualization Page</title>
+  <style>
+    body {
+      background-color: #0c0c0c;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+
+    section {
+      margin: 20px;
+      padding: 20px;
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      width: 80%;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    h2 {
+      color: #3498db;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>EDA of Red Wine Data</h1>
+  </header>
+
+  <section>
+    <h2>About the Data</h2>
+      <img src="{{ url_for('static', filename='Aboutthedata.png') }}" alt="Image 1">
+  </section>
+
+  <section>
+    <h2>Heat Map</h2>
+    <p>->Heat maps are commonly used to visualize the correlation matrix of variables in a dataset. <br><br>
+
+        ->They provide a visual representation of the strength and direction of relationships between different variables</p>
+    <img src="{{ url_for('static', filename='HeatMap.png') }}" alt="Image 1">
+  </section>
+
+  <section>
+    <h2>Histogram Plots</h2>
+    <p>->Histograms provide a visual representation of the distribution of a single variable, showing the frequency or count of values within different intervals or bins. <br><br>
+      -> By examining the shape of the histogram, one can gain insights into the central tendency (mean, median) and spread (range, variability) of the data.
+      </p>
+    <img src="{{ url_for('static', filename='Hist1.png') }}" alt="Image 1">
+      <img src="{{ url_for('static', filename='Hist2.png') }}" alt="Image 1">
+  </section>
+
+  <section>
+    <h2>Box Plot</h2>
+    <p>->Box plots provide a visual summary of the central tendency (median) and spread (interquartile range) of a dataset.
+      <br><br> 
+      ->Whiskers extending from the box in a box plot can be used to identify potential outliers—data points that fall outside a certain range from the median.
+      </p>
+    <img src="{{ url_for('static', filename='BoxPlot.png') }}" alt="Image 1">
+  </section>
+
+</body>
+</html>

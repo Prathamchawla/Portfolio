@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sentiment Analysis</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #222;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      background-color: #333;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    h1 {
+      text-align: center;
+      color: #4CAF50; /* Highlighted color */
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #555;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background-color: #444;
+      color: #fff;
+    }
+    input[type="submit"] {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animated {
+      animation-duration: 1s;
+      animation-fill-mode: both;
+    }
+    .fadeInUp {
+      animation-name: fadeInUp;
+    }
+  </style>
+</head>
+<body>
+  <div class="container animated fadeInUp">
+    <h1>Sentiment Analysis</h1>
+    <form id="sentiment-form">
+      <input type="text" id="text-input" placeholder="Enter your text here...">
+      <input type="submit" value="Analyze">
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    document.getElementById('sentiment-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var text = document.getElementById('text-input').value;
+
+      // Send text to server for analysis
+      fetch('/Sentimentpredict', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({text: text})
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('result').innerText = "Sentiment: " + data.sentiment;
+      });
+    });
+  </script>
+</body>
+</html>

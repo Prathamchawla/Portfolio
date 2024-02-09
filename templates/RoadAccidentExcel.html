@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Road Accident Dashboard</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: auto;
+      height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2em;
+      position: relative;
+      display: inline-block;
+      color: #00ccff;
+    }
+
+    h1::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #00ccff;
+      transform: scaleX(0);
+      transform-origin: bottom right;
+      transition: transform 0.3s ease-out;
+    }
+
+    h1:hover::before {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    section {
+      padding: 50px;
+      text-align: center;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animated {
+      opacity: 0;
+      animation: fadeInUp 1s ease-out forwards;
+    }
+
+    /* Custom Scrollbar Styles */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #00ccff;
+      border-radius: 6px;
+      transition: background-color 0.3s ease-out;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #0077b6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Road Accident Dashboard</h1>
+  </header>
+
+  <section id="summary" class="animated">
+    
+    <img src="{{ url_for('static', filename='RoadAccidentExcel.png') }}" alt="Summary Image">
+  </section>
+
+  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var summarySection = document.getElementById("summary");
+      var productDetailsSection = document.getElementById("product-details");
+
+      window.addEventListener("scroll", function() {
+        var scrollPosition = window.scrollY;
+
+        if (scrollPosition > summarySection.offsetTop - window.innerHeight + 100) {
+          summarySection.classList.add("animated");
+        }
+
+        if (scrollPosition > productDetailsSection.offsetTop - window.innerHeight + 100) {
+          productDetailsSection.classList.add("animated");
+        }
+
+        // Custom Scrollbar Animation
+        var scrollbarThumb = document.querySelector("::-webkit-scrollbar-thumb");
+        if (scrollPosition > 100) {
+          scrollbarThumb.style.backgroundColor = "#0077b6";
+        } else {
+          scrollbarThumb.style.backgroundColor = "#00ccff";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
